@@ -21,6 +21,7 @@
     "zod": "^3.25.71"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.11.17",
     "drizzle-kit": "^0.31.4",
     "prettier": "^3.6.2",
