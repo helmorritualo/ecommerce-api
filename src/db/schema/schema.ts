@@ -12,35 +12,24 @@ export const users = table("users", {
   updatedAt: t.timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
 });
 
-export const customerProfile = -table("customer_profile", {
+export const customerProfile = table("customer_profile", {
   id: t.int("id").primaryKey().autoincrement(),
   userId: t
     .int("user_id")
     .references(() => users.id, { onDelete: "cascade" })
     .notNull(),
   phone: t.varchar("phone", { length: 20 }),
+  address1: t.varchar("address1", { length: 255 }).notNull(),
+  address2: t.varchar("address2", { length: 255 }),
+  city: t.varchar("city", { length: 100 }).notNull(),
+  province: t.varchar("province", { length: 100 }).notNull(),
+  country: t.varchar("country", { length: 100 }).notNull(),
+  zip: t.varchar("zip", { length: 20 }).notNull(),
   totalSpent: t
     .decimal("total_spent", { precision: 10, scale: 2 })
     .default("0.00"),
   ordersCount: t.int("orders_count").default(0),
   lastOrderAt: t.timestamp("last_order_at"),
-  dateOfBirth: t.timestamp("date_of_birth"),
-  createdAt: t.timestamp("created_at").defaultNow().notNull(),
-  updatedAt: t.timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
-});
-
-export const customerAddress = table("customer_address", {
-  id: t.int("id").primaryKey().autoincrement(),
-  userId: t
-    .int("user_id")
-    .references(() => users.id, { onDelete: "cascade" })
-    .notNull(),
-  address1: t.varchar("address1", { length: 255 }).notNull(),
-  address2: t.varchar("address2", { length: 255 }),
-  city: t.varchar("city", { length: 100 }).notNull(),
-  province: t.varchar("province", { length: 100 }),
-  country: t.varchar("country", { length: 100 }).notNull(),
-  zip: t.varchar("zip", { length: 20 }).notNull(),
   createdAt: t.timestamp("created_at").defaultNow().notNull(),
   updatedAt: t.timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
 });
