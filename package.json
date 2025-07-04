@@ -1,0 +1,24 @@
+{
+  "name": "ecommerce-api",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.15.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.0.1",
+    "hono": "^4.8.3",
+    "http-status-codes": "^2.3.0",
+    "uuid": "^11.1.0",
+    "zod": "^3.25.71"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "prettier": "^3.6.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.8.3"
+  }
+}
