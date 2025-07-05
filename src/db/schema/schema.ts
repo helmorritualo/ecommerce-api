@@ -6,7 +6,6 @@ export const users = table("users", {
   id: t.int("id").primaryKey().autoincrement(),
   email: t.varchar("email", { length: 255 }).notNull().unique(),
   password: t.varchar("password", { length: 255 }).notNull(),
-  name: t.varchar("name", { length: 100 }).notNull(),
   isActive: t.boolean("is_active").default(true),
   createdAt: t.timestamp("created_at").defaultNow().notNull(),
   updatedAt: t.timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
@@ -18,6 +17,7 @@ export const customerProfile = table("customer_profile", {
     .int("user_id")
     .references(() => users.id, { onDelete: "cascade" })
     .notNull(),
+  name: t.varchar("name", { length: 100 }).notNull(),
   phone: t.varchar("phone", { length: 20 }),
   address1: t.varchar("address1", { length: 255 }).notNull(),
   address2: t.varchar("address2", { length: 255 }),

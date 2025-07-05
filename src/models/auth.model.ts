@@ -6,13 +6,12 @@ import { db } from "@/config/database";
 type User = typeof users.$inferInsert;
 
 export const createUser = async (userData: User) => {
-  const { email, password, name } = userData;
+  const { email, password } = userData;
   const hashedPassword = await bcrypt.hash(password, 12);
 
   const newUser = {
     email,
     password: hashedPassword,
-    name,
   };
 
   const [user] = await db.insert(users).values(newUser);
@@ -31,17 +30,7 @@ export const findUserByEmail = async (email: string) => {
 };
 
 export const findUserById = async (id: number) => {
-  const [user] = await db
-    .select({
-      id: users.id,
-      email: users.email,
-      name: users.name,
-      isActive: users.isActive,
-      createdAt: users.createdAt,
-    })
-    .from(users)
-    .where(eq(users.id, id))
-    .limit(1);
+  const [user] = await db.select().from(users).where(eq(users.id, id)).limit(1);
 
   return user;
 };

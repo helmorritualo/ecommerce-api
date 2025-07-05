@@ -31,13 +31,13 @@ import {
 
 export const register = async (c: Context) => {
   try {
-    const { email, password, name } = await c.req.json();
+    const { email, password } = await c.req.json();
 
     const existingUser = await findUserByEmail(email);
     if (existingUser) {
       throw new BadRequestError("User already exists");
     }
-    await createUser({ email, password, name });
+    await createUser({ email, password });
 
     const user = await findUserByEmail(email);
     if (!user) {
@@ -71,7 +71,6 @@ export const register = async (c: Context) => {
         user: {
           id: user.id,
           email: user.email,
-          name: user.name,
         },
       },
       201
@@ -143,7 +142,6 @@ export const login = async (c: Context) => {
         user: {
           id: user.id,
           email: user.email,
-          name: user.name,
         },
       },
       200
@@ -234,7 +232,6 @@ export const refreshToken = async (c: Context) => {
         user: {
           id: user.id,
           email: user.email,
-          name: user.name,
         },
       },
       200
